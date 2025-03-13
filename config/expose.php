@@ -14,7 +14,7 @@ return [
     */
     'servers' => [
         'main' => [
-            'host' => 'sharedwithexpose.com',
+            'host' => 'multisafepay.io',
             'port' => 443,
         ],
     ],
@@ -55,7 +55,7 @@ return [
     | `true` to fall-back to the system default DNS servers.
     |
     */
-    'dns' => '127.0.0.1',
+    'dns' => true,
 
     /*
     |--------------------------------------------------------------------------
