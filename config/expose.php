@@ -173,7 +173,7 @@ return [
         'size' => '1MB',
     ],
 
-    'platform_url' => 'https://expose.dev',
+    'platform_url' => 'https://multisafepay.io',
 
     /*
     |--------------------------------------------------------------------------
