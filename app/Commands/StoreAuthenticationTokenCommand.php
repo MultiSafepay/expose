@@ -55,22 +55,6 @@ class StoreAuthenticationTokenCommand extends Command implements FetchesPlatform
             );
         }
 
-        if ($this->exposeToken()->isInvalid()) {
-
-            if (!$this->option('no-interaction')) {
-                error("Token $this->token is invalid. Please check your token and try again. If you don't have a token, visit <a href='https://expose.dev'>expose.dev</a> to create your free account.");
-
-                if ($this->exposeToken()->hasError() && $this->getOutput()->isVerbose()) {
-                    info();
-                    info($this->exposeToken()->getError());
-                }
-
-                return 1;
-            } else {
-                $this->fail("Token $this->token is invalid. Please check your token and try again.");
-            }
-        }
-
         $configFile = implode(DIRECTORY_SEPARATOR, [
             $_SERVER['HOME'] ?? $_SERVER['USERPROFILE'],
             '.expose',
