@@ -142,7 +142,7 @@ class LoggedRequest implements \JsonSerializable
         } catch (RuntimeException $e) {
             $parsedRequest = new Request();
         }
-        $loggedRequest = new self($requestLog->raw_request, Request::fromString($requestLog->raw_request));
+        $loggedRequest = new self($requestLog->raw_request, $parsedRequest);
         $loggedRequest->id = $requestLog->request_id;
         $loggedRequest->startTime = Carbon::createFromTimestampMs($requestLog->start_time);
         $loggedRequest->stopTime = $requestLog->stop_time ? Carbon::createFromTimestampMs($requestLog->stop_time) : null;
