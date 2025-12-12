@@ -10,6 +10,7 @@ use Expose\Client\RequestLog;
 use GuzzleHttp\Psr7\Message;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Laminas\Http\Header\Exception\RuntimeException;
 use Laminas\Http\Header\GenericHeader;
 use Laminas\Http\Header\MultipleHeaderInterface;
 use Laminas\Http\Request;
@@ -136,7 +137,12 @@ class LoggedRequest implements \JsonSerializable
     }
 
     public static function fromRecord(RequestLog $requestLog): self {
-        $loggedRequest = new self($requestLog->raw_request, Request::fromString($requestLog->raw_request));
+        try {
+            $parsedRequest = Request::fromString($requestLog->raw_request);
+        } catch (RuntimeException $e) {
+            $parsedRequest = new Request();
+        }
+        $loggedRequest = new self($requestLog->raw_request, $parsedRequest);
         $loggedRequest->id = $requestLog->request_id;
         $loggedRequest->startTime = Carbon::createFromTimestampMs($requestLog->start_time);
         $loggedRequest->stopTime = $requestLog->stop_time ? Carbon::createFromTimestampMs($requestLog->stop_time) : null;
