@@ -46,7 +46,7 @@
         "illuminate/pipeline": "^11.5",
         "illuminate/validation": "^11.5",
         "illuminate/view": "^11.5",
-        "laminas/laminas-http": "^2.13",
+        "laminas/laminas-http": "dev-multisafepay",
         "laravel-zero/framework": "^11.0",
         "mockery/mockery": "^1.4.2",
         "nikic/php-parser": "^v4.10",
@@ -94,6 +94,10 @@
         {
             "type": "git",
             "url": "https://github.com/exposedev/http"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/MultiSafepay/laminas-http.git"
         }
     ],
     "minimum-stability": "dev",
